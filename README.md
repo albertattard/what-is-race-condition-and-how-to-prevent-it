@@ -100,7 +100,6 @@ public class Example2 {
 
 This example got a bit complex.  Let us break it down and analyse it further.
 
-
 1. One of the main problems in concurrency is that the problem will not always manifest itself.  The problem will only show its face when certain conditions are met.  If we run the program once, we may not observe the problem.  Therefore we iterate for several times (one thousand in this case) or until the problem occurs.  This is controlled by the `run` variable which will cause the loop to stop after one thousand iterations.  The second variable, named `numberOfThreads` governs the number of threads to be used in the experiment.
 
     ```java
@@ -218,7 +217,7 @@ These two actions need to be execution in isolation and the object state cannot 
             }
 ```
 
-The intrinsic lock on the object instance now spans over both actions together and thus prevents a thread from entering this region before the previous thread finishes.  This solution addresses the Race Condition as this solution prevents the states from being invalidated by another thread (as long as all threads make use of this approach).
+The intrinsic lock on the object instance now spans over both actions together and thus prevents a thread from entering this region before the previous thread finishes.  This solution addresses the race condition as this solution prevents the states from being invalidated by another thread (as long as all threads make use of this approach).
 
 The following example will never fail.
 
