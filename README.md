@@ -32,7 +32,6 @@ public class Data {
 }
 ```
 
-
 The `Data` class shown above is quite straightforward and requires little explanation.  It has one field, called `value`, which field is accessed through the `getValue()` and `setValue()` methods.  These methods are `synchronized` which means that only one thread can access each method at one point in time.  Furthermore, the `synchronized` block will cause each thread accessing it to cross the memory barrier and always get actual value instead of using the cached copy.  Each thread keeps a cached copy of the variables used for performance reasons.  The `synchronized` forces the thread to refreshes its cache, thus making sure that the thread has the latest values.  Moreover, any changes made to the value are then copied to the main memory so that other threads can read the latest values.
 
 One can safely say that this class is thread safe.
@@ -55,7 +54,6 @@ public class Example1 {
 ```
 
 The value is first retrieved through the `getValue()` method.  This value is then incremented by one and then passed to the `setValue()` method to increment the state of the object by one.  This simple operation is subject to Race Condition when used within a multithreaded programming environment as shown in the next example.
-
 
 ```java
 package com.javacreed.examples.concurrency.part1;
