@@ -41,37 +41,7 @@
     <surefire.version>2.20.1</surefire.version>
     <jacoco.version>0.7.9</jacoco.version>
     <reports.version>2.9</reports.version>
-    <google.guava.version>27.0.1-jre</google.guava.version>
-    <junit.version>4.12</junit.version>
   </properties>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>${google.guava.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
-  <dependencies>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
-  </dependencies>
 
   <build>
     <defaultGoal>clean install site versions:display-dependency-updates</defaultGoal>
@@ -84,7 +54,7 @@
         <configuration>
           <!-- Sets the VM argument line used when unit tests are run. -->
           <argLine>${surefireArgLine}</argLine>
-          <!-- Skips unit tests if the value of skip.unit.tests property 
+          <!-- Skips unit tests if the value of skip.unit.tests property
             is true -->
           <skipTests>${skip.unit.tests}</skipTests>
         </configuration>
@@ -95,7 +65,7 @@
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>${jacoco.version}</version>
         <executions>
-          <!-- Prepares the property pointing to the JaCoCo runtime agent 
+          <!-- Prepares the property pointing to the JaCoCo runtime agent
             which is passed as VM argument when Maven the Surefire plugin is executed. -->
           <execution>
             <id>pre-unit-test</id>
@@ -103,15 +73,15 @@
               <goal>prepare-agent</goal>
             </goals>
             <configuration>
-              <!-- Sets the path to the file which contains the execution 
+              <!-- Sets the path to the file which contains the execution
                 data. -->
               <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
-              <!-- Sets the name of the property containing the settings 
+              <!-- Sets the name of the property containing the settings
                 for JaCoCo runtime agent. -->
               <propertyName>surefireArgLine</propertyName>
             </configuration>
           </execution>
-          <!-- Ensures that the code coverage report for unit tests is created 
+          <!-- Ensures that the code coverage report for unit tests is created
             after unit tests have been run. -->
           <execution>
             <id>post-unit-test</id>
@@ -120,7 +90,7 @@
               <goal>report</goal>
             </goals>
             <configuration>
-              <!-- Sets the path to the file which contains the execution 
+              <!-- Sets the path to the file which contains the execution
                 data. -->
               <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
               <!-- Sets the output directory for the code coverage report. -->
